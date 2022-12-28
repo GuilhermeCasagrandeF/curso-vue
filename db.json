@@ -24,5 +24,16 @@
       "nome": "Teste projeto",
       "id": 6
     }
+  ],
+  "tarefas": [
+    {
+      "id" : 1,
+      "duracaoEmSegundos": 120,
+      "descricao": "Configuração do servidor",
+      "projeto": {
+        "id": 1,
+        "nome": "Alura Tracker"
+      }
+    }
   ]
 }
