@@ -27,13 +27,22 @@
   ],
   "tarefas": [
     {
-      "id" : 1,
+      "id": 1,
       "duracaoEmSegundos": 120,
       "descricao": "Configuração do servidor",
       "projeto": {
         "id": 1,
         "nome": "Alura Tracker"
       }
+    },
+    {
+      "duracaoEmSegundos": 1,
+      "descricao": "Tarefa wwww",
+      "projeto": {
+        "nome": "Teste projeto",
+        "id": 2
+      },
+      "id": 2
     }
   ]
 }
