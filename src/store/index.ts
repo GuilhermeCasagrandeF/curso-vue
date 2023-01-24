@@ -9,7 +9,7 @@ import { EstadoDoProjeto, projeto } from "./modulos/projeto";
 import { EstadoTarefa, tarefa } from "./modulos/tarefas";
 
 export interface Estado {
-    tarefas: EstadoTarefa,
+    tarefa: EstadoTarefa,
     notificacoes: INotificacao[],
     projeto: EstadoDoProjeto,
 }
@@ -19,7 +19,7 @@ export const key: InjectionKey<Store<Estado>> = Symbol()
 export const store = createStore<Estado>({
     state: {
         notificacoes: [],
-        tarefas: {
+        tarefa: {
             tarefas: []
         },
         projeto: {
