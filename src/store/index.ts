@@ -6,9 +6,10 @@ import { INotificacao } from "@/interfaces/INotificacao";
 import { ALTERAR_TAREFA, CADASTRAR_TAREFAS, OBTER_TAREFAS } from "./tipo-acoes";
 import clienteHttp from "../http";
 import { EstadoDoProjeto, projeto } from "./modulos/projeto";
+import { EstadoTarefa, tarefa } from "./modulos/tarefas";
 
 export interface Estado {
-    tarefas: ITarefa[],
+    tarefas: EstadoTarefa,
     notificacoes: INotificacao[],
     projeto: EstadoDoProjeto,
 }
@@ -17,24 +18,15 @@ export const key: InjectionKey<Store<Estado>> = Symbol()
 
 export const store = createStore<Estado>({
     state: {
-        tarefas: [],
         notificacoes: [],
+        tarefas: {
+            tarefas: []
+        },
         projeto: {
             projetos: []
         },
     },
     mutations: {
-        
-        [DEFINIR_TAREFAS](state, tarefas: ITarefa[]) {
-            state.tarefas = tarefas;
-        },
-        [ADICIONA_TAREFA](state, tarefa: ITarefa) {
-            state.tarefas.push(tarefa)
-        },
-        [ALTERA_TAREFA](state, tarefa: ITarefa) {
-            const index = state.tarefas.findIndex(t => t.id == tarefa.id)
-            state.tarefas[index] = tarefa
-        },
         [NOTIFICAR] (state, novaNotificacao: INotificacao) {
 
             novaNotificacao.id = new Date().getTime()
@@ -45,23 +37,9 @@ export const store = createStore<Estado>({
             }, 3000)
         }
     },
-    actions: {
-        [OBTER_TAREFAS] ({ commit }) {
-            clienteHttp.get('tarefas')
-            .then(resposta => commit(DEFINIR_TAREFAS, resposta.data));
-        },
-        [CADASTRAR_TAREFAS] ({commit}, tarefa: ITarefa) {
-            return clienteHttp.post('/tarefas', tarefa)
-            .then(resposta => commit(ADICIONA_TAREFA, resposta.data))
-        },
-        [ALTERAR_TAREFA] ({commit}, tarefa: ITarefa) {
-            return clienteHttp.put(`/tarefas/${tarefa.id}`, tarefa)
-            .then(() => commit(ALTERA_TAREFA, tarefa))
-        },
-
-    },
     modules: {
         projeto,
+        tarefa,
     }
 })
 
