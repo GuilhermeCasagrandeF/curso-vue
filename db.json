@@ -23,6 +23,10 @@
     {
       "nome": "Teste projeto",
       "id": 6
+    },
+    {
+      "nome": "Estudos",
+      "id": 7
     }
   ],
   "tarefas": [
@@ -43,6 +47,15 @@
         "id": 2
       },
       "id": 2
+    },
+    {
+      "duracaoEmSegundos": 5,
+      "descricao": "Nova tarefa",
+      "projeto": {
+        "id": 1,
+        "nome": "Alura Tracker"
+      },
+      "id": 3
     }
   ]
 }
